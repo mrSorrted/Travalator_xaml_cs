@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="VHT_CMS_V1.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VHT_CMS_V1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="VHT_CMS_V1">
+
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+
+
+    <Canvas>
+        <!-- App Title Bar at the top -->
+        <Border x:Name="AppTitleBar"
+                Canvas.Left="0"
+                Canvas.Top="0"
+                Width="2200"
+                Height="30"
+                Background="#FF1E1E1E">
+            <TextBlock x:Name="AppTitle"
+                       Text="    VHT CMS System"
+                       VerticalAlignment="Center"
+                       Margin="0,8,0,0"
+                       Foreground="White"
+                       FontSize="22"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Left"
+                       TextAlignment="Left"
+                       Width="2200"/>
+        </Border>
+
+        <!-- Main Content below the title bar -->
+        <NavigationView x:Name="nvSample"
+                        PaneDisplayMode="Left"
+                        IsPaneOpen="True"
+                        Canvas.Left="0"
+                        Canvas.Top="48"
+                        OpenPaneLength="280"
+                        IsBackButtonVisible="Collapsed"
+                        ItemInvoked="nvSample_ItemInvoked">
+            <NavigationView.Resources>
+                <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+            </NavigationView.Resources>
+            <NavigationView.MenuItems>
+                <NavigationViewItem Tag="Summary Elevators">
+                    <NavigationViewItem.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="ms-appx:///Assets/Elevator_icon.png" Width="26" Height="26" Margin="0,0,8,0"/>
+                            <TextBlock Text="Elevator Summary" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </NavigationViewItem.Content>
+                </NavigationViewItem>
+
+                <NavigationViewItem Tag="Summary Escalators">
+                    <NavigationViewItem.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="ms-appx:///Assets/Escalator_icon.png" Width="26" Height="26" Margin="0,0,8,0"/>
+                            <TextBlock Text="Escalator Summary" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </NavigationViewItem.Content>
+                </NavigationViewItem>
+
+                <NavigationViewItem Tag="Summary Travelators">
+                    <NavigationViewItem.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="ms-appx:///Assets/Travelator_icon.png" Width="26" Height="26" Margin="0,0,8,0"/>
+                            <TextBlock Text="Travelator Summary" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </NavigationViewItem.Content>
+                </NavigationViewItem>
+
+                <NavigationViewItem Tag="Summary Elevator NON EPC">
+                    <NavigationViewItem.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="ms-appx:///Assets/Elevator_icon.png" Width="26" Height="26" Margin="0,0,8,0"/>
+                            <TextBlock Text="Non EPC Elevator Summary" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </NavigationViewItem.Content>
+                </NavigationViewItem>
+
+            </NavigationView.MenuItems>
+            <Frame x:Name="contentFrame">
+                <ScrollViewer x:Name="MainScrollViewer"
+                              HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Disabled"
+                              HorizontalScrollMode="Disabled"
+                              VerticalScrollMode="Disabled"
+                              IsScrollInertiaEnabled="False"
+                              Width="2200"
+                              Height="1080">
+
+                </ScrollViewer>
+            </Frame>
+
+            <NavigationView.PaneFooter>
+                <StackPanel Orientation="Vertical" Margin="8,0,8,8" Spacing="6">
+                    <!-- Passenger Lift -->
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <Ellipse Width="16" Height="16" Fill="#4A90E2"/>
+                        <TextBlock Text="Passenger Lift"
+                       Foreground="White"
+                       FontSize="12"
+                       VerticalAlignment="Center"
+                       Visibility="{Binding IsPaneOpen, ElementName=nvSample, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    </StackPanel>
+                    <!-- Goods Lift -->
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <Ellipse Width="16" Height="16" Fill="Yellow"/>
+                        <TextBlock Text="Goods Lift"
+                       Foreground="White"
+                       FontSize="12"
+                       VerticalAlignment="Center"
+                       Visibility="{Binding IsPaneOpen, ElementName=nvSample, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    </StackPanel>
+                    <!-- Fire/Staff Lift -->
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <Ellipse Width="16" Height="16" Fill="Red"/>
+                        <TextBlock Text="Fire/Staff Lift"
+                       Foreground="White"
+                       FontSize="12"
+                       VerticalAlignment="Center"
+                       Visibility="{Binding IsPaneOpen, ElementName=nvSample, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    </StackPanel>
+                    <!-- OOG -->
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <Ellipse Width="16" Height="16" Fill="Green"/>
+                        <TextBlock Text="OOG"
+                       Foreground="White"
+                       FontSize="12"
+                       VerticalAlignment="Center"
+                       Visibility="{Binding IsPaneOpen, ElementName=nvSample, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    </StackPanel>
+                    <!-- Service Lift -->
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <Ellipse Width="16" Height="16" Fill="Purple"/>
+                        <TextBlock Text="Service Lift"
+                       Foreground="White"
+                       FontSize="12"
+                       VerticalAlignment="Center"
+                       Visibility="{Binding IsPaneOpen, ElementName=nvSample, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    </StackPanel>
+                    <!-- Hotel Lift -->
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <Ellipse Width="16" Height="16" Fill="Turquoise"/>
+                        <TextBlock Text="Hotel Lift"
+                       Foreground="White"
+                       FontSize="12"
+                       VerticalAlignment="Center"
+                       Visibility="{Binding IsPaneOpen, ElementName=nvSample, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                    </StackPanel>
+                </StackPanel>
+            </NavigationView.PaneFooter>
+        </NavigationView>
+    </Canvas>
+</Window>
