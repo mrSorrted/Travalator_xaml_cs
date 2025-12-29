@@ -1,227 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Page
-    x:Class="VHT_CMS_V1.MainWindowTra"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:VHT_CMS_V1"
-    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-        HorizontalAlignment="Left"
-VerticalAlignment="Top">
+Create table VoipDetails(
+DevicesName nvarchar(50),
+COP1_Num nvarchar(50),
+Controller_Num nvarchar(50),
+COP2_Num nvarchar(50),
+) 
+
+select* from VoipDetails
 
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ScrollViewer x:Name="MainScrollViewer"
-                      HorizontalScrollBarVisibility="Auto"
-                      VerticalScrollBarVisibility="Auto"
-                      ZoomMode="Disabled">
-            <Canvas x:Name="MainCanvas"
-                    Width="2900"
-                    Height="1080"
-                    Background="Transparent">
+INSERT INTO VoipDetails (DevicesName, COP1_Num, Controller_Num, COP2_Num)
+VALUES
+('DPL1', '11015', '11016', '11017'),
+('DPL2', '11018', '11019', '11020'),
+('LPL5', '11021', '11022', NULL),
+('LPL6', '11023', '11024', NULL),
+('LGL1', '11025', '11026', NULL),
+('LGL5', '11027', '11028', NULL),
+('DPL9', '11029', '11030', '11036'),
+('DPL10', '11031', '11032', NULL),
+('DPL11', '11034', '11035', NULL),
+('DGL3', '11037', '11038', NULL),
+('DGL4', '11039', '11040', NULL),
+('LGL2', '11041', '11042', '11043'),
+('LGL6', '11044', '11045', NULL),
+('LGL3 (D)', '11047', '11048', NULL),
+('LGL4 (I)', '11049', '11050', NULL),
+('DPL5', '11051', '11052', NULL),
+('DPL6', '11053', '11054', NULL),
+('HPL1', '11055', '11056', '11057'),
+('HPL2', '11058', '11059', '11060'),
+('DGL1', '11061', '11062', NULL),
+('DGL2', '11063', '11064', NULL),
+('IGL3', '11065', '11066', NULL),
+('IGL4', '11067', '11068', NULL),
+('DFL1', '11069', '11070', NULL),
+('DFL2', '11072', '11073', '11074'),
+('DFL4', '11075', '11076', '11077'),
+('IPL11', '11010', '11012', NULL),
+('IPL12', '11013', '11014', NULL),
+('IFL3', '11078', '11079', NULL),
+('IPL1', '11080', '11081', '11081'),
+('IPL2', '11082', '11083', '11084'),
+('DPL7', '11085', '11086', '11087'),
+('IGL1', '11088', '11089', NULL),
+('IGL2', '11091', '11092', NULL),
+('IPL3', '11093', '11094', NULL),
+('IPL4', '11095', '11096', NULL),
+('IFL1', '11097', '11098', '11099'),
+('IFL2', '11100', '11101', '11101'),
+('FPL1', '11103', '11104', '11105'),
+('FPL2', '11106', '11107', '11108'),
+('FPL3', '11110', '11111', '11112'),
+('FPL4', '11113', '11114', '11115'),
+('FPL5', '11116', '11117', '11118'),
+('FPL6', '11119', '11120', '11121'),
+('FPL7', '11122', '11123', '11124'),
+('FPL8', '11125', '11126', '11127'),
+('FPL9', '11128', '11129', '11130'),
+('FPL10', '11131', '11132', '11133'),
+('FPL11', '11134', '11135', '11136'),
+('FGL1', '11137', '11138', NULL),
+('FGL2', '11139', '11140', NULL),
+('MSL1', '11141', '11142', NULL),
+('MSL2', '11143', '11144', NULL),
+('MPL1', '11145', '11146', NULL),
+('MPL2', '11147', '11148', NULL),
+('MPL3', '11149', '11150', NULL),
+('MPL4', '11151', '11152', NULL),
+('ASR', '11160', '11161', NULL),
+('ATB 2', '11162', '11163', NULL),
+('ATB 1', '11164', '11165', NULL),
+('ATB 3', '11166', '11167', NULL);
 
-                <Canvas.Resources>
-                    <!-- Single Data Template for Escalators -->
-                    <DataTemplate x:Key="EscalatorTemplate">
-                        <StackPanel Orientation="Vertical" Background="WhiteSmoke" CornerRadius="12" Margin="4">
-                            <Canvas Width="150" Height="180">
-                                <Image
-                                   x:Name="PanelImage" 
-                                   Source="/Assets/Travelator_Stop.png"
-                                   Stretch="Fill"
-                                   Height="230"
-                                   Width="150"
-                                   Canvas.Left="0" 
-                                   Canvas.Top="0"
-                                   Opacity="1.0"
-                                    Visibility="Collapsed">
-                                    <Image.RenderTransform>
-                                        <TranslateTransform Y="0" />
-                                    </Image.RenderTransform>
-                                </Image>
-                                <controls:AnimatedVisualPlayer
-x:Name="LottiePlayer"
-Width="150"
-Height="150"
-AutoPlay="True"
-Stretch="Uniform"
-Canvas.Left="0"
-Canvas.Top="0"
-Opacity="1.0" />
-                                <TextBlock>
-                                </TextBlock>
-                                <TextBlock>
-
-                                </TextBlock>
-                                <Border x:Name="ErrorImageBorder"
-                                        Canvas.Left="40"
-                                        Canvas.Top="10"
-                                        Width="60"
-                                        Height="50"
-                                        Background="#282828"
-                                        Canvas.ZIndex="51"
-                                        Visibility="Collapsed"
-                                        CornerRadius="8">
-                                    <Image x:Name="ErrorImage"
-                                           Source="ms-appx:///Assets/black.jpg"
-
-                                           Stretch="Fill" />
-                                </Border>
-                                <Button 
-                                    Content="{Binding Name}"
-                                    FontFamily="Arial Rounded MT Bold"
-                                    FontSize="12"
-                                    FontWeight="Bold"
-                                    Background="#FF212121"
-                                    Foreground="White"
-                                    Height="32"
-                                    Width="155"
-                                    Canvas.Left="-2"
-                                    Canvas.Top="150"
-                                    HorizontalAlignment="Left"
-                                    Click="Escalatorbtn_Click"
-                                    CornerRadius="6"
-                                  local:ButtonClickThrottle.IsEnabled="True"
-
-                                />
-                            </Canvas>
-                        </StackPanel>
-                    </DataTemplate>
-                </Canvas.Resources>
-
-                <!-- Domestic (D*) Group Shadow -->
-                <Border Canvas.ZIndex="-5"
-                        Background="#331E293B"
-                         Width="1050"
-                         Height="400"
-                         Canvas.Left="10"
-                         Canvas.Top="10"
-                         CornerRadius="36"
-                         IsHitTestVisible="False"/>
-                <!-- Domestic (D*) Group -->
-                <Border Canvas.ZIndex="-1"
-                        Background="Transparent"
-                            Width="1050"
-                            Height="400"
-                            Canvas.Left="10"
-                            Canvas.Top="10"
-                            CornerRadius="32"
-                            BorderBrush="Purple"
-                            BorderThickness="4"
-                            Padding="0">
-                    <StackPanel>
-                        <TextBlock Text="Domestic"
-                                   FontSize="38"
-                                   FontWeight="Bold"
-                                   Foreground="White"
-                                   Margin="32,24,0,12"
-                                   FontFamily="Arial Rounded MT Bold"/>
-                    </StackPanel>
-                </Border>
-
-                <!-- International (I*) Group Shadow -->
-                <Border Canvas.ZIndex="-1"
-                        Background="#331B3B2F"
-                        Width="800"
-                        Height="400"
-                        Canvas.Left="1070"
-                        Canvas.Top="10"
-                        CornerRadius="36"
-                        IsHitTestVisible="False"/>
-                <!-- International (I*) Group -->
-                <Border Canvas.ZIndex="-1"
-                        Background="#CC1B3B2F"
-                        Width="800"
-                        Height="400"
-                        Canvas.Left="1070"
-                        Canvas.Top="10"
-                        CornerRadius="32"
-                        BorderBrush="#FF4CAF50"
-                        BorderThickness="4"
-                        Padding="0">
-                    <StackPanel>
-                        <TextBlock Text="International"
-                                   FontSize="38"
-                                   FontWeight="Bold"
-                                   Foreground="#FF4CAF50"
-                                   Margin="32,24,0,12"
-                                   FontFamily="Arial Rounded MT Bold"/>
-                    </StackPanel>
-                </Border>
-
-                <!-- Forecourt (F*) Group Shadow -->
-                <Border Canvas.ZIndex="-1"
-                        Background="#333B1B2F"
-                        Width="1050"
-                        Height="420"
-                        Canvas.Left="10"
-                        Canvas.Top="420"
-                        CornerRadius="36"
-                        IsHitTestVisible="False"/>
-                <!-- Forecourt (F*) Group -->
-                <Border Canvas.ZIndex="-1"
-                        Background="#CC3B1B2F"
-                        Width="1050"
-                        Height="420"
-                        Canvas.Left="10"
-                        Canvas.Top="420"
-                        CornerRadius="32"
-                        BorderBrush="#FFFF9800"
-                        BorderThickness="4"
-                        Padding="0">
-                    <StackPanel>
-                        <TextBlock Text="West Pier"
-                                   FontSize="36"
-                                   FontWeight="Bold"
-                                   Foreground="#FFFF9800"
-                                   Margin="15,10,0,12"
-                                   FontFamily="Arial Rounded MT Bold"/>
-                    </StackPanel>
-                </Border>
-
-                <!-- Forecourt (F*) Group Shadow -->
-                <Border Canvas.ZIndex="-1"
-            Background="#333B1B2F"
-            Width="800"
-            Height="420"
-            Canvas.Left="450"
-            Canvas.Top="420"
-            CornerRadius="36"
-            IsHitTestVisible="False"/>
-                <!-- Forecourt (F*) Group -->
-                <Border Canvas.ZIndex="-1"
-            Background="#CC3B1B2F"
-            Width="800"
-            Height="420"
-            Canvas.Left="1070"
-            Canvas.Top="420"
-            CornerRadius="32"
-            BorderBrush="#FFFF9800"
-            BorderThickness="4"
-            Padding="0">
-                    <StackPanel>
-                        <TextBlock Text="East Pier"
-                       FontSize="38"
-                       FontWeight="Bold"
-                       Foreground="#FFFF9800"
-                       Margin="25,24,0,12"
-                       FontFamily="Arial Rounded MT Bold"/>
-                    </StackPanel>
-                </Border>
-
-                <!-- ItemsControl with single template -->
-                <ItemsControl x:Name="RootGrid"
-                      ItemsSource="{Binding EscalatorPanels}"
-                      ItemTemplate="{StaticResource EscalatorTemplate}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <Canvas/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
-            </Canvas>
-        </ScrollViewer>
-    </Grid>
-</Page>
